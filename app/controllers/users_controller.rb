@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 class UsersController < ApplicationController
+
+  # TODO: create a before_action :authenticate_user! and remove perform_if_authenticated
   def create
     user_params = params.require(:user).permit(:name, :email, :password, :password_confirmation)
 
@@ -26,6 +28,7 @@ class UsersController < ApplicationController
           password_digest: password_digest
         )
 
+        # TODO: check if will be better to return 200
         if user.save
           render_json(201, user: user.as_json(only: [:id, :name, :token]))
         else

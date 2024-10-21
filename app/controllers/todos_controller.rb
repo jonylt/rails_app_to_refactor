@@ -3,6 +3,7 @@
 class TodosController < ApplicationController
   before_action :authenticate_user
 
+  # TODO: potentially remove/refactor these before_actions and move the business logic into the specific methods (i.e.: show and use the todo id)
   before_action :set_todo_lists
   before_action :set_todos
   before_action :set_todo, except: [:index, :create]
@@ -20,6 +21,8 @@ class TodosController < ApplicationController
   end
 
   def create
+
+    # TODO: check any validation before creating the todo
     todo = @todos.create(todo_params.except(:completed))
 
     if todo.valid?

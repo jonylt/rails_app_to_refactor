@@ -3,8 +3,10 @@
 Rails.application.routes.draw do
   resources :users, only: [:create]
 
+  # TODO: might be better to keep the logic inside the endpoint and controller users and add :show :destroy :index
   resource :user, only: [:show, :destroy]
 
+  # TODO: rewrite this logic (similar to users)
   resources :todos do
     member do
       put 'complete'

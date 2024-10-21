@@ -62,6 +62,7 @@ class Todo < ApplicationRecord
     'incomplete'
   end
 
+  # TODO: all the complete methods could be part of only one method with different return status
   def complete
     self.completed_at = Time.current unless completed?
   end
@@ -82,6 +83,7 @@ class Todo < ApplicationRecord
     self.save if completed_at_changed?
   end
 
+  # TODO: we might not need this method, as we can use default rails rendering or serializer
   def serialize_as_json
     as_json(except: [:completed], methods: :status)
   end
